@@ -7,7 +7,13 @@ module.exports = class CallExpression {
   }
 
   run() {
-    this.callee.run(...this.arguments.map(a => a.run()))
+    const callee = this.callee.run()
+
+    if (typeof callee == 'function') {
+      callee(...this.arguments.map(a => a.run()))
+    } else {
+      callee.run(...this.arguments.map(a => a.run()))
+    }
   }
 }
 

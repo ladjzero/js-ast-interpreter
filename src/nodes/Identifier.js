@@ -9,11 +9,6 @@ module.exports = class Identifier {
   }
 
   run() {
-    switch (this.node.name) {
-      case 'console':
-        return console
-      default:
-        return this.scope[this.node.name]
-    }
+    return this.scope.get(this.node.name)
   }
 }

@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "启动程序",
-      "program": "${workspaceFolder}/index.mjs",
+      "program": "${workspaceFolder}/index.js",
       "args": [
         "--experimental-modules"
       ]

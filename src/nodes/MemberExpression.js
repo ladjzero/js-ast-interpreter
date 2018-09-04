@@ -2,15 +2,17 @@ module.exports = class MemberExpression {
   constructor(node, scope) {
     this.node = node
     this.scope = scope
-    this.object = construct(node.object)
-    this.property = construct(node.property)
+    this.object = construct(node.object, scope)
+    this.property = construct(node.property, scope)
   }
 
   run() {
+    const obj  = this.object.run();
+
     if (this.node.computed) {
-      return this.object.run()[this.property.run()](...arguments)
+      return obj[this.property.run()]
     } else {
-      return this.object.run()[this.property.name](...arguments)
+      return obj[this.property.name]
     }
   }
 }
