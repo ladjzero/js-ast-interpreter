@@ -1,5 +1,8 @@
-module.exports = class FunctionDeclaration {
+const Node = require('./Node')
+
+module.exports = class FunctionDeclaration extends Node {
   constructor(node, scope) {
+    super(node, scope)
     this.node = node
     this.scope = new Scope(scope)
     this.body = construct(node.body, this.scope)

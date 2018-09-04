@@ -1,5 +1,8 @@
-module.exports = class BinaryExpression {
+const Node = require('./Node')
+
+module.exports = class BinaryExpression extends Node {
   constructor(node, scope) {
+    super(node, scope)
     this.node = node
     this.scope = scope
     this.left = construct(node.left, scope)

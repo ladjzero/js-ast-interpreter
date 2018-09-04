@@ -1,12 +1,16 @@
-module.exports = class VariableDeclarator {
+const Node = require('./Node')
+
+module.exports = class VariableDeclarator extends Node {
   constructor(node, scope) {
+    super(node, scope)
     this.node = node
     this.scope = scope
-    this.scope.set(node.id.name, construct(node.init, scope))
+    this.scope.set(node.id.name, undefined)
+    this.__initScope = construct(node.init, scope)
   }
 
   run() {
-    this.scope.set(this.node.id.name, this.scope.getOwn(this.node.id.name).run())
+    this.scope.set(this.node.id.name, this.__initScope.run())
   }
 }
 

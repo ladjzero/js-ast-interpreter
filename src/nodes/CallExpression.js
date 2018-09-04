@@ -1,5 +1,8 @@
-module.exports = class CallExpression {
+const Node = require('./Node')
+
+module.exports = class CallExpression extends Node {
   constructor(node, scope) {
+    super(node, scope)
     this.node = node
     this.scope = scope
     this.callee = construct(node.callee, scope)
@@ -11,8 +14,10 @@ module.exports = class CallExpression {
 
     if (typeof callee == 'function') {
       callee(...this.arguments.map(a => a.run()))
-    } else {
+    } else if (callee.__isNode__){
       callee.run(...this.arguments.map(a => a.run()))
+    } else {
+      throw new Error('not callable')
     }
   }
 }

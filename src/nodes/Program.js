@@ -1,5 +1,8 @@
-module.exports = class Program {
+const Node = require('./Node')
+
+module.exports = class Program extends Node {
   constructor(node, scope) {
+    super(node, scope)
     this.scope = new Scope(scope)
     this.body = node.body.map(n => construct(n, this.scope))
   }
