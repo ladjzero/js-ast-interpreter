@@ -56,3 +56,26 @@ it('closure', () => {
   expect(global.console.log).toHaveBeenCalledTimes(1)
   expect(global.console.log).toBeCalledWith('Sam')
 })
+
+it('call self', () => {
+  const global = { console: { log: jest.fn() }}
+
+  run(`
+    var a = 3;
+
+    function b() {
+      if (a) {
+        console.log(a);
+        a = a - 1;
+        b();
+      }
+    }
+    
+    b();
+  `, global)
+
+  expect(global.console.log).toHaveBeenCalledTimes(3)
+  expect(global.console.log).toHaveBeenNthCalledWith(1, 3)
+  expect(global.console.log).toHaveBeenNthCalledWith(2, 2)
+  expect(global.console.log).toHaveBeenNthCalledWith(3, 1)
+})

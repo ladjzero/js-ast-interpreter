@@ -24,7 +24,20 @@ module.exports = class Scope {
     }
   }
 
-  set(key, val) {
+  setOwn(key, val) {
     this.dict[key] = val
+  }
+
+  set(key, val) {
+    let current = this
+
+    while (current) {
+      if (current.has(key)) {
+        current.setOwn(key, val)
+        break
+      } else {
+        current = current.upper
+      }
+    }
   }
 }

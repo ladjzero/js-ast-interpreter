@@ -1,4 +1,5 @@
 module.exports = {
+  AssignmentExpression: require('./AssignmentExpression'),
   BinaryExpression: require('./BinaryExpression'),
   BlockStatement: require('./BlockStatement'),
   CallExpression: require('./CallExpression'),

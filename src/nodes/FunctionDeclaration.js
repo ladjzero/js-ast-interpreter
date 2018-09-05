@@ -5,14 +5,11 @@ module.exports = class FunctionDeclaration extends Node {
     super(node, scope)
     this.scope = new Scope(scope)
     this.body = construct(node.body, this.scope)
+    this.scope.setOwn(node.id.name, this.body)
   }
 
   run() {
-    this.scope.upper.set(this.node.id.name, this.body)
-  }
-
-  call() {
-    this.body.run()
+    this.scope.upper.setOwn(this.node.id.name, this.body)
   }
 }
 

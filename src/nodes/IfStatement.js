@@ -5,14 +5,14 @@ module.exports = class IfStatement extends Node {
     super(node, scope)
     this.test = construct(node.test, scope)
     this.consequent = construct(node.consequent, scope)
-    this.alternate = construct(node.alternate, scope)
+    this.alternate = node.alternate && construct(node.alternate, scope)
   }
 
   run() {
     if (this.test.run()) {
       this.consequent.run()
     } else {
-      this.alternate.run()
+      this.alternate && this.alternate.run()
     }
   }
 }

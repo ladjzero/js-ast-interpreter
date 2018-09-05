@@ -11,6 +11,8 @@ module.exports = class BinaryExpression extends Node {
     switch (this.node.operator) {
       case '+':
       return this.left.run() + this.right.run()
+      case '-':
+      return this.left.run() - this.right.run()
     }
   }
 }
