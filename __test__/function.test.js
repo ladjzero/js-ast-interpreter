@@ -38,3 +38,21 @@ it('return should break function', () => {
   expect(global.console.log).toHaveBeenCalledTimes(1)
   expect(global.console.log).toBeCalledWith(1)
 })
+
+it('closure', () => {
+  const global = { console: { log: jest.fn() }}
+
+  run(`
+    function a() {
+      var name = 'Sam';
+        return function() {
+          return name;
+        }
+    }
+    var b = a();
+    console.log(b());
+  `, global)
+
+  expect(global.console.log).toHaveBeenCalledTimes(1)
+  expect(global.console.log).toBeCalledWith('Sam')
+})

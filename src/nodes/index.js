@@ -4,6 +4,7 @@ module.exports = {
   CallExpression: require('./CallExpression'),
   ExpressionStatement: require('./ExpressionStatement'),
   FunctionDeclaration: require('./FunctionDeclaration'),
+  FunctionExpression: require('./FunctionExpression'),
   Identifier: require('./Identifier'),
   Literal: require('./Literal'),
   MemberExpression: require('./MemberExpression'),
