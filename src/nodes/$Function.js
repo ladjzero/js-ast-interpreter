@@ -9,12 +9,12 @@ module.exports = class $Function {
     }
   }
 
-  run() {
-    for (let i = 0, len = arguments.length; i < len; i++) {
-      this.scope.setOwn(this.node.params[i].name, arguments[i])
+  run({ $this, $arguments }) {
+    for (let i = 0, len = $arguments.length; i < len; i++) {
+      this.scope.setOwn(this.node.params[i].name, $arguments[i])
     }
 
-    return this.body.run()
+    return this.body.run({ $this })
   }
 }
 

@@ -9,13 +9,22 @@ module.exports = class CallExpression extends Node {
     this.arguments = node.arguments.map(a => construct(a, scope))
   }
 
-  run() {
+  run(context) {
+    this.$this = undefined
+
+    if (this.callee.type == 'MemberExpression') {
+      this.$this = this.callee.object.run()
+    }
+
     const callee = this.callee.run()
 
     if (typeof callee == 'function') {
-      return callee(...this.arguments.map(a => a.run()))
+      return callee.apply(this.$this, this.arguments.map(a => a.run(context)))
     } else if (callee instanceof $Function){
-      return callee.run(...this.arguments.map(a => a.run()))
+      return callee.run({
+        $this: this.$this,
+        $arguments: this.arguments.map(a => a.run(context)),
+      })
     } else {
       throw new Error('not callable')
     }

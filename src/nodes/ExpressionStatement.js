@@ -6,8 +6,8 @@ module.exports = class ExpressionStatement extends Node {
     this.expression = construct(node.expression, scope)
   }
 
-  run() {
-    this.expression.run()
+  run(context) {
+    this.expression.run(context)
   }
 }
 

@@ -12,8 +12,10 @@ module.exports = {
   IfStatement: require('./IfStatement'),
   Literal: require('./Literal'),
   MemberExpression: require('./MemberExpression'),
+  ObjectExpression: require('./ObjectExpression'),
   Program: require('./Program'),
   ReturnStatement: require('./ReturnStatement'),
+  ThisExpression: require('./ThisExpression'),
   VariableDeclaration: require('./VariableDeclaration'),
   VariableDeclarator: require('./VariableDeclarator'),
  }

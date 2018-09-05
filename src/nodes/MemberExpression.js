@@ -8,8 +8,8 @@ module.exports = class MemberExpression extends Node {
     this.property = construct(node.property, scope)
   }
 
-  run() {
-    const obj  = this.object.run();
+  run(context) {
+    const obj  = this.object.run(context);
 
     if (this.node.computed) {
       return obj[this.property.run()]
