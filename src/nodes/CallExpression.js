@@ -1,4 +1,5 @@
 const Node = require('./Node')
+const $Function = require('./$Function')
 
 module.exports = class CallExpression extends Node {
   constructor(node, scope) {
@@ -13,7 +14,7 @@ module.exports = class CallExpression extends Node {
 
     if (typeof callee == 'function') {
       return callee(...this.arguments.map(a => a.run()))
-    } else if (callee.__isNode__){
+    } else if (callee instanceof $Function){
       return callee.run(...this.arguments.map(a => a.run()))
     } else {
       throw new Error('not callable')

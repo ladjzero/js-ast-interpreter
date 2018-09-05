@@ -79,3 +79,18 @@ it('call self', () => {
   expect(global.console.log).toHaveBeenNthCalledWith(2, 2)
   expect(global.console.log).toHaveBeenNthCalledWith(3, 1)
 })
+
+it('params', () => {
+  const global = { console: { log: jest.fn() }}
+
+  run(`
+    function a(b, c) {
+      console.log(b + c);
+    }
+    
+    a('hello', ' world')
+  `, global)
+
+  expect(global.console.log).toHaveBeenCalledTimes(1)
+  expect(global.console.log).toBeCalledWith('hello world')
+})

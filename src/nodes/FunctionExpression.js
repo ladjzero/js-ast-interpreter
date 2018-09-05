@@ -1,16 +1,15 @@
 const Node = require('./Node')
+const $Function = require('./$Function')
 
 module.exports = class FunctionExpression extends Node {
   constructor(node, scope) {
     super(node, scope)
-    this.scope = new Scope(scope)
-    this.body = construct(node.body, this.scope)
+    this.$function = new $Function(node, scope)
   }
 
   run() {
-    return this.body
+    return this.$function
   }
 }
 
 var { construct } = require('./utils')
-var Scope = require('../common/Scope')

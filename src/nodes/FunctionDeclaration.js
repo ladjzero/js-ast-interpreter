@@ -1,15 +1,15 @@
 const Node = require('./Node')
+const $Function = require('./$Function')
 
 module.exports = class FunctionDeclaration extends Node {
   constructor(node, scope) {
     super(node, scope)
-    this.scope = new Scope(scope)
-    this.body = construct(node.body, this.scope)
-    this.scope.setOwn(node.id.name, this.body)
+    const $function = new $Function(node, scope)
+    scope.setOwn(node.id.name, $function)
   }
 
   run() {
-    this.scope.upper.setOwn(this.node.id.name, this.body)
+    
   }
 }
 
