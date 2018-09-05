@@ -3,7 +3,6 @@ const Node = require('./Node')
 module.exports = class ExpressionStatement extends Node {
   constructor(node, scope) {
     super(node, scope)
-    this.node = node
     this.expression = construct(node.expression, scope)
   }
 

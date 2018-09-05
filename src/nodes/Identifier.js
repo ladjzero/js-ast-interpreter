@@ -3,7 +3,6 @@ const Node = require('./Node')
 module.exports = class Identifier extends Node {
   constructor(node, scope) {
     super(node, scope)
-    this.node = node
     this.scope = scope
   }
 

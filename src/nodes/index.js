@@ -8,6 +8,7 @@ module.exports = {
   Literal: require('./Literal'),
   MemberExpression: require('./MemberExpression'),
   Program: require('./Program'),
+  ReturnStatement: require('./ReturnStatement'),
   VariableDeclaration: require('./VariableDeclaration'),
   VariableDeclarator: require('./VariableDeclarator'),
  }

@@ -25,12 +25,13 @@ describe('function creates a new scope', () => {
       function a() {
         console.log(name);
         var name = 'Wels';
+        console.log(name);
       }
       a();
     `, global)
   
-    expect(global.console.log).toHaveBeenCalledTimes(1)
-    expect(global.console.log).toBeCalledWith(undefined)
+    expect(global.console.log).toHaveBeenCalledTimes(2)
+    expect(global.console.log).toHaveBeenNthCalledWith(1, undefined)
+    expect(global.console.log).toHaveBeenNthCalledWith(2, 'Wels')
   })
-  
 })

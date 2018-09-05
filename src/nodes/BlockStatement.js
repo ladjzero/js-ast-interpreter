@@ -9,6 +9,10 @@ module.exports = class BlockStatement extends Node {
 
   run() {
     for (let node of this.body) {
+      if (node.type == 'ReturnStatement') {
+        return node.run()
+      }
+
       node.run()
     }
   }

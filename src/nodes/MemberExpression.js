@@ -3,7 +3,6 @@ const Node = require('./Node')
 module.exports = class MemberExpression extends Node {
   constructor(node, scope) {
     super(node, scope)
-    this.node = node
     this.scope = scope
     this.object = construct(node.object, scope)
     this.property = construct(node.property, scope)
