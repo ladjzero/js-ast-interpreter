@@ -7,9 +7,9 @@ module.exports = class BinaryExpression extends Node {
     this.right = construct(node.right, scope)
   }
 
-  run() {
-    const left = this.left.run()
-    const right = this.right.run()
+  run(context) {
+    const left = this.left.run(context)
+    const right = this.right.run(context)
 
     switch (this.node.operator) {
     case '+':
@@ -20,6 +20,8 @@ module.exports = class BinaryExpression extends Node {
       return left > right
     case '==':
       return left == right
+    case '===':
+      return left === right
     }
   }
 }

@@ -1,4 +1,4 @@
-const { run } = require('../src/common/runner')
+const { run } = require('../common/runner')
 
 it('function declare and run', () => {
   const global = { console: { log: jest.fn() }}
@@ -93,4 +93,21 @@ it('params', () => {
 
   expect(global.console.log).toHaveBeenCalledTimes(1)
   expect(global.console.log).toBeCalledWith('hello world')
+})
+
+it('function apply', () => {
+  const global = { console: { log: jest.fn() }}
+
+  run(`
+    var a = { name: 'Sam' }
+
+    function say(hi) {
+      console.log(hi + ', ' + this.name)
+    }
+    
+    say.apply(a, ['hello'])
+  `, global)
+
+  expect(global.console.log).toHaveBeenCalledTimes(1)
+  expect(global.console.log).toBeCalledWith('hello, Sam')
 })

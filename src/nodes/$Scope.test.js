@@ -1,4 +1,4 @@
-const { run } = require('../src/common/runner')
+const { run } = require('../common/runner')
 
 describe('function creates a new scope', () => {
   it('overwrite', () => {

@@ -5,11 +5,11 @@ module.exports = class VariableDeclarator extends Node {
     super(node, scope)
     this.scope = scope
     this.scope.setOwn(node.id.name, undefined)
-    this.__initScope = construct(node.init, scope)
+    this.__initScope = node.init && construct(node.init, scope)
   }
 
   run() {
-    this.scope.setOwn(this.node.id.name, this.__initScope.run())
+    this.__initScope && this.scope.setOwn(this.node.id.name, this.__initScope.run())
   }
 }
 

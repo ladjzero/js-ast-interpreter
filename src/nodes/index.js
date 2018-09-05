@@ -1,4 +1,5 @@
 module.exports = {
+  ArrayExpression: require('./ArrayExpression'),
   AssignmentExpression: require('./AssignmentExpression'),
   BinaryExpression: require('./BinaryExpression'),
   BlockStatement: require('./BlockStatement'),
@@ -12,6 +13,7 @@ module.exports = {
   IfStatement: require('./IfStatement'),
   Literal: require('./Literal'),
   MemberExpression: require('./MemberExpression'),
+  NewExpression: require('./NewExpression'),
   ObjectExpression: require('./ObjectExpression'),
   Program: require('./Program'),
   ReturnStatement: require('./ReturnStatement'),

@@ -9,6 +9,10 @@ module.exports = class $Function {
     }
   }
 
+  apply($this, $arguments) {
+    this.run({ $this, $arguments })
+  }
+
   run({ $this, $arguments }) {
     for (let i = 0, len = $arguments.length; i < len; i++) {
       this.scope.setOwn(this.node.params[i].name, $arguments[i])

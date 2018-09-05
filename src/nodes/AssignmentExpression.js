@@ -8,8 +8,13 @@ module.exports = class AssignmentExpression extends Node {
     this.right = construct(node.right, scope)
   }
 
-  run() {
-    this.scope.set(this.node.left.name, this.right.run())
+  run(context) {
+    if (this.node.left.type == 'MemberExpression') {
+      const obj = construct(this.node.left.object, this.scope).run(context)
+      return obj[this.node.left.property.name] = this.right.run(context)
+    } else {
+      return this.scope.set(this.node.left.name, this.right.run(context))
+    }
   }
 }
 
