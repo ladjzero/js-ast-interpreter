@@ -8,11 +8,18 @@ module.exports = class BinaryExpression extends Node {
   }
 
   run() {
+    const left = this.left.run()
+    const right = this.right.run()
+
     switch (this.node.operator) {
-      case '+':
-      return this.left.run() + this.right.run()
-      case '-':
-      return this.left.run() - this.right.run()
+    case '+':
+      return left + right
+    case '-':
+      return left - right
+    case '>':
+      return left > right
+    case '==':
+      return left == right
     }
   }
 }

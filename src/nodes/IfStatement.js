@@ -8,9 +8,9 @@ module.exports = class IfStatement extends Node {
     this.alternate = node.alternate && construct(node.alternate, scope)
   }
 
-  run() {
+  run(context) {
     if (this.test.run()) {
-      this.consequent.run()
+      this.consequent.run(context)
     } else {
       this.alternate && this.alternate.run()
     }
