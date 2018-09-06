@@ -9,7 +9,7 @@ module.exports = class MemberExpression extends Node {
   }
 
   run(context) {
-    const obj  = this.object.run(context);
+    const obj  = Object(this.object.run(context))
 
     if (this.node.computed) {
       return obj[this.property.run()]
