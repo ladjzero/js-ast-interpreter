@@ -1,4 +1,5 @@
 const Node = require('./Node')
+const $Function = require('./$Function')
 
 module.exports = class BinaryExpression extends Node {
   constructor(node, scope) {
@@ -22,7 +23,19 @@ module.exports = class BinaryExpression extends Node {
       return left == right
     case '===':
       return left === right
-    }
+    case 'instanceof': {
+      if (right instanceof $Function) {
+        const proto = right.__boundTarget ? right.__boundTarget.prototype : right.prototype
+
+        if (proto) {
+          return proto.isPrototypeOf(left)
+        }
+  
+        return false
+      } else {
+        return left instanceof right
+      }
+    }}
   }
 }
 

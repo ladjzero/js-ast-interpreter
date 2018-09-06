@@ -18,13 +18,8 @@ module.exports = class CallExpression extends Node {
 
     const callee = this.callee.run()
 
-    if (typeof callee == 'function') {
+    if (typeof callee == 'function' || callee instanceof $Function) {
       return callee.apply(this.$this, this.arguments.map(a => a.run(context)))
-    } else if (callee instanceof $Function){
-      return callee.run({
-        $this: this.$this,
-        $arguments: this.arguments.map(a => a.run(context)),
-      })
     } else {
       throw new Error('not callable')
     }

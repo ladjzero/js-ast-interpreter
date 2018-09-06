@@ -18,6 +18,7 @@ module.exports = {
   Program: require('./Program'),
   ReturnStatement: require('./ReturnStatement'),
   ThisExpression: require('./ThisExpression'),
+  UnaryExpression: require('./UnaryExpression'),
   VariableDeclaration: require('./VariableDeclaration'),
   VariableDeclarator: require('./VariableDeclarator'),
  }
